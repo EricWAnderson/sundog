@@ -29,6 +29,15 @@
   font-size: 83px;
 }
 
+.jumbotron .well {
+  margin: 20% auto 5% auto;
+  width: 300px;
+  border-radius: 0px;
+  border: 2px solid #16130b;
+  background-color: #16130b;
+  color: #dfe7ef;
+}
+
 .panel h3 {
   text-align: center;
   margin: 0 auto;

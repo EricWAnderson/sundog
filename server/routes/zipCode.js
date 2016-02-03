@@ -8,8 +8,15 @@ router.post('/', function(req, res){
 
     request(api, function(error, response, body){
       if (!error && response.statusCode == 200){
-        var utility = JSON.parse(body);
-        res.send(utility.outputs.utility_name);
+        var utility = {};
+        utility.name = JSON.parse(body).outputs.utility_name;
+
+        if (utility.name == 'Northern States Power Co (Minnesota)'){
+          utility.isNSP = true;
+        } else {
+          utility.isNSP = false;
+        }
+        res.send(utility);
       }
     })
 });

@@ -26,13 +26,19 @@ app.controller('landingPage', ['$scope', 'zipCode', function($scope, zipCode){
 app.controller('signup', ['$scope', function($scope){}]);
 app.controller('account', ['$scope', function($scope){}]);
 
-app.factory('zipCode', ['$http', function($http){
-    var data = {}
+app.factory('zipCode', ['$http', '$location', function($http, $location){
+    var data = {};
 
     var keyPress = function(){
       if(data.input.length==5){
           $http.post('/zipCode', data).then(function(response){
-            console.log(response);
+            data.response = true;  //so client knows whether response received
+            data.utility = response.data.name; //utility associated with client zip code
+            data.isNSP = response.data.isNSP; //boolean whether client is NSP or not
+
+            //if utility is NSP, send user to sign up form
+            if(data.isNSP) $location.path('/signup');
+
           })
       }
     }

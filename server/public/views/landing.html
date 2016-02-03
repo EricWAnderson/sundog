@@ -1,20 +1,42 @@
 <div class="jumbotron">
-    <div class="container">
+  <div class="container">
       <h1>Go Solar!</h1>
       <h2>Lower your electric bill with SunDog</h2>
-      <div class="panel top-panel">
-        <div class="panel-heading">
-          <h3>see if you qualify</h3>
-        </div>
-        <div class="panel-body">
-          <input ng-model="zipCode.input" ng-change="zipCodeKeyPress()" type="text" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
-        </div>
-      </div>
 
-      <div class="panel">
-          <a ng-href="/login"><h4>already signed up? login</h3></a>
-      </div>
-</div>
+      <!-- if a zip code hasn't been entered, or no response yet from server -->
+        <div ng-if="!zipCode.response">
+
+            <div class="panel top-panel">
+                <div class="panel-heading">
+                  <h3>see if you qualify</h3>
+                </div>
+                <div class="panel-body">
+                  <input ng-model="zipCode.input" ng-change="zipCodeKeyPress()" type="text" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
+                </div>
+            </div>
+
+            <div class="panel">
+                <a ng-href="/login"><h4>already signed up? login</h3></a>
+            </div>
+
+        </div>
+
+      <!-- if a zip code response has been received from the server -->
+        <div ng-if="zipCode.response">
+
+            <div ng-if="!zipCode.isNSP">
+              <div class="panel top-panel">
+                  <div class="panel-heading">
+                    <h3>Bummer, {{zipCode.utility}} customer</h3>
+                  </div>
+                  <div class="panel-body">
+                    <input ng-model="zipCode.input" ng-change="zipCodeKeyPress()" type="text" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
+                  </div>
+              </div>
+            </div>
+            
+        </div>
+  </div>
 
 <div>
   <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>

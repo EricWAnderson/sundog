@@ -7,7 +7,7 @@
           <h3>see if you qualify</h3>
         </div>
         <div class="panel-body">
-          <input ng-model="zipCode" ng-keypress="zipCodeKeyPress()" type="text" placeholder="zip code" class="form-control input-lg zip-code" autofocus />
+          <input ng-model="zipCode.input" ng-change="zipCodeKeyPress()" type="text" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
         </div>
       </div>
 

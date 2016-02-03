@@ -18,24 +18,27 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     $locationProvider.html5Mode(true);
 }]);
 
-app.controller('landingPage', ['$scope', 'zipCodeChecker', function($scope, $location, zipCodeChecker){
-    $scope.zipCodeKeyPress = zipCodeChecker.zipCodeKeyPress;
+app.controller('landingPage', ['$scope', 'zipCode', function($scope, zipCode){
+    $scope.zipCodeKeyPress = zipCode.keyPress;
+    $scope.zipCode = zipCode.data;
 }]);
 
 app.controller('signup', ['$scope', function($scope){}]);
 app.controller('account', ['$scope', function($scope){}]);
 
-app.factory('zipCodeChecker', ['$http', function($http){
+app.factory('zipCode', ['$http', function($http){
     var data = {}
-    var counter = 0;
 
-    var zipCodeKeyPress = function(){
-      counter++;
-      console.log(counter);
+    var keyPress = function(){
+      if(data.input.length==5){
+          $http.post('/zipCode', data).then(function(response){
+            console.log(response);
+          })
+      }
     }
 
     return {
-      zipCodeKeyPress: zipCodeKeyPress,
+      keyPress: keyPress,
       data: data
     }
 }]);

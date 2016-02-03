@@ -1,0 +1,49 @@
+.panel {
+  margin: 0 auto 5% auto;
+  width: 211px;
+  border-radius: 0px;
+  border: 2px solid #16130b;
+  background-color: #16130b;
+  color: #dfe7ef;
+}
+
+.top-panel {
+  margin: 20% auto 5% auto;
+}
+
+.panel-heading, .panel-body {
+  padding: 0px;
+}
+
+.jumbotron {
+  background: url("../../assets/images/dog-1440.jpg") no-repeat fixed left top;
+  height: 800px;
+  padding-top: 10%;
+}
+
+.jumbotron h1, .jumbotron h2 {
+  padding-left: 10%;
+}
+
+.jumbotron h1 {
+  font-size: 83px;
+}
+
+.panel h3 {
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.panel h5 {
+  text-align: center;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.zip-code {
+  border-radius: 0px;
+  text-align: center;
+  font-size: 40px;
+  height: 70px;
+}

@@ -1,3 +1,110 @@
-<div>
-    {{hello}} account
+<div class="jumbotron signup-jt">
+
+    <div class="container-fluid">
+        <h2>You're eligible for community solar!</h2>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+  <h4>Join Sun Dog and sign up for solar today!</h4>
+
+  <div class="row">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+        <form class="form-group form-group-lg">
+
+          <!-- Displays Step 1 of signup form: user registration -->
+          <div ng-if="!signup.data.signUpCompleted">
+                <label for="emailAddress">Email address</label>
+                <input type="email" class="form-control" id="emailAddress" placeholder="your valid email" />
+
+                <label for="password">Password</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="password" placeholder="minimum 7 characters" />
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block" ng-click="signup.signUp()">Sign Up</button>
+
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped step-one" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4"></div>
+                </div>
+                <span>step 1 of 4 complete</span>
+          </div>
+
+          <!-- Displays step 2 of signup form: utility bill information -->
+          <div ng-if="signup.data.signUpCompleted && !signup.data.nextCompleted">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped step-two" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="4"></div>
+                </div>
+                <p>step 2 of 4</p>
+
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="your first name" />
+
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="your last name" />
+
+                <fieldset>
+                  <legend>information from your utility bill</legend>
+                  <label for="xcelAccountNumber">your Xcel Energy account number</label>
+                  <input type="text" class="form-control" id="xcelAccountNumber" placeholder="_ _ _ _ _ _ _" />
+
+                  <label for="xcelPremiseNumber">your Xcel Energy premise number</label>
+                  <input type="text" class="form-control" id="xcelPremiseNumber" placeholder="_ _ _ _ _ _ _ _ _" />
+
+                  <label for="xcelServiceAddress">your Xcel Energy service address</label>
+                  <input type="text" class="form-control" id="xcelServiceAddress" placeholder="your street address" />
+                  <input type="text" class="form-control" id="xcelServiceAddress" placeholder="your city" />
+
+                  <label for="electricUsage">recent month electric usage</label>
+                  <input type="range" id="electricUsage" value="50" />
+                </fieldset>
+
+                <button class="btn btn-primary btn-lg btn-block" ng-click="signup.next()">Next</button>
+          </div>
+
+          <!-- Displays Step 3 of signup form: agency agreement -->
+          <div ng-if="signup.data.nextCompleted && !signup.data.agencyAgreementCompleted">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped step-three" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="4"></div>
+                </div>
+                <p>step 3 of 4</p>
+
+                <textarea class="form-control" rows="10" id="agencyAgreement">Agency Agreement goes here</textarea>
+                <div class="checkbox">
+                    <label><input type="checkbox">I have read and agree to the terms of the Agency agreement</label>
+                </div>
+                <button class="btn btn-primary btn-lg btn-block" ng-click="signup.agencyAgreement()">Sign electronically</button>
+          </div>
+
+          <!-- Displays step 4 of signup form: data privacy agreement -->
+          <div ng-if="signup.data.agencyAgreementCompleted && !signup.data.dataAgreementCompleted">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped step-four" role="progressbar" aria-valuenow="4" aria-valuemin="1" aria-valuemax="4"></div>
+                </div>
+                <p>step 4 of 4</p>
+
+                <textarea class="form-control" rows="10" id="dataPrivacy">Data privacy agreement goes here</textarea>
+                <div class="checkbox">
+                    <label><input type="checkbox">I have read and agree to the data privacy terms</label>
+                </div>
+                <button class="btn btn-primary btn-lg btn-block" ng-click="signup.dataPrivacyAgreement()">Sign electronically</button>
+
+          </div>
+
+          <!-- Displays signup form success! -->
+          <div ng-if="signup.data.dataAgreementCompleted">
+
+          <h1>Done!</h1>
+
+          </div>
+        </form>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+
 </div>

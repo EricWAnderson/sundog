@@ -6,6 +6,7 @@ router.post('/', function(req, res){
     var zipCode = req.body.input;
     var api = 'https://api.data.gov/nrel/utility_rates/v3.json?address=' + zipCode + '&api_key=K5GXLvLHFExMVcEk99Hz6n1Ts9RtsoYgRY9rpMb2';
 
+    //send zip code to NREL API and get utility information back
     request(api, function(error, response, body){
       if (!error && response.statusCode == 200){
         var utility = {};
@@ -16,7 +17,7 @@ router.post('/', function(req, res){
         } else {
           utility.isNSP = false;
         }
-        res.send(utility);
+        res.send(utility);  //send utility info to client
       }
     })
 });

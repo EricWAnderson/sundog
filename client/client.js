@@ -62,6 +62,7 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
 
 app.factory('signUpService', ['$http', '$location', function($http, $location){
     var data = {
+      status: 'Join Sun Dog and sign up for solar today!',
       //set status indicators of which step in sign up form is completed
       signUpCompleted: false,
       nextCompleted: false,
@@ -69,13 +70,24 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
       dataAgreementCompleted: false
     };
 
+    //called on step 1 button click
     var signUp = function(){
       data.signUpError = '';
       console.log('email address is', data.emailAddress);
-      
+
       if(validatePassword(data.password) && validateEmail(data.emailAddress)){
         data.signUpCompleted = true;
         console.log('signed up!');
+
+        //register to server
+        $http.post('signUp/register', data).then(function(response){
+          console.log('response is ', response);
+          if(response.status == 200){
+            data._id = response.data._id;
+            data.status = 'Registration successful';
+          }
+        })
+
       } else {
         if(!validatePassword(data.password)){
           data.signUpError = 'Password invalid. ';
@@ -88,8 +100,16 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
 
     }
 
+    //called on step 2 button click
     var next = function(){
-      data.nextCompleted = true;
+      //send data to server
+      $http.post('/signUp/account', data).then(function(response){
+        if(response.status == 200){
+          data.status = 'You\'re all set';
+        }
+      })
+
+      data.nextCompleted = true;  //used to reset the view
       console.log('next!');
     }
 

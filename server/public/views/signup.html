@@ -7,7 +7,7 @@
 </div>
 
 <div class="container-fluid">
-  <h4>Join Sun Dog and sign up for solar today!</h4>
+  <h4>{{signup.data.status}}</h4>
 
   <div class="row">
     <div class="col-md-4"></div>
@@ -46,25 +46,25 @@
                 <p>step 2 of 4</p>
 
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="your first name" required />
+                <input ng-model="signup.data.firstName" type="text" class="form-control" id="firstName" placeholder="your first name" required />
 
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="your last name" required />
+                <input ng-model="signup.data.lastName" type="text" class="form-control" id="lastName" placeholder="your last name" required />
 
                 <fieldset>
                   <legend>information from your utility bill</legend>
                   <label for="xcelAccountNumber">your Xcel Energy account number</label>
-                  <input type="text" class="form-control" id="xcelAccountNumber" placeholder="_ _ _ _ _ _ _" />
+                  <input ng-model="signup.data.xcelAccountNumber" type="text" class="form-control" id="xcelAccountNumber" placeholder="_ _ _ _ _ _ _" />
 
                   <label for="xcelPremiseNumber">your Xcel Energy premise number</label>
-                  <input type="text" class="form-control" id="xcelPremiseNumber" placeholder="_ _ _ _ _ _ _ _ _" />
+                  <input ng-model="signup.data.xcelPremiseNumber" type="text" class="form-control" id="xcelPremiseNumber" placeholder="_ _ _ _ _ _ _ _ _" />
 
                   <label for="xcelServiceAddress">your Xcel Energy service address</label>
-                  <input type="text" class="form-control" id="xcelServiceAddress" placeholder="your street address" />
-                  <input type="text" class="form-control" id="xcelServiceAddress" placeholder="your city" />
+                  <input ng-model="signup.data.xcelServiceAddress" type="text" class="form-control" id="xcelServiceAddress" placeholder="your street address" />
+                  <input ng-model="signup.data.xcelCity" type="text" class="form-control" id="xcelServiceAddress" placeholder="your city" />
 
                   <label for="electricUsage">recent month electric usage</label>
-                  <input type="range" id="electricUsage" value="50" />
+                  <input ng-model="signup.data.electricUsage" type="range" id="electricUsage" value="50" />
                 </fieldset>
 
                 <button class="btn btn-primary btn-lg btn-block" ng-click="signup.next()">Next</button>

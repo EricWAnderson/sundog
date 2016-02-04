@@ -70,8 +70,22 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
     };
 
     var signUp = function(){
-      data.signUpCompleted = true;
-      console.log('signed up!');
+      data.signUpError = '';
+      console.log('email address is', data.emailAddress);
+      
+      if(validatePassword(data.password) && validateEmail(data.emailAddress)){
+        data.signUpCompleted = true;
+        console.log('signed up!');
+      } else {
+        if(!validatePassword(data.password)){
+          data.signUpError = 'Password invalid. ';
+        }
+        if(!validateEmail(data.emailAddress)){
+          data.signUpError += 'Email invalid.';
+        }
+        console.log('nope');
+      }
+
     }
 
     var next = function(){
@@ -97,3 +111,20 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
       data: data
     }
 }]);
+
+var validatePassword = function(password){
+  if(password.length >= 7){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+var validateEmail = function(email) {
+    var emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(email.match(emailformat)){
+      return true;
+    } else {
+      return false;
+    }
+}

@@ -17,17 +17,21 @@
 
           <!-- Displays Step 1 of signup form: user registration -->
           <div ng-if="!signup.data.signUpCompleted">
+
                 <label for="emailAddress">Email address</label>
-                <input type="email" class="form-control" id="emailAddress" placeholder="your valid email" />
+                <input type="email" class="form-control" id="emailAddress" placeholder="your valid email" ng-model="signup.data.emailAddress" required />
 
                 <label for="password">Password</label>
                 <div class="input-group">
-                  <input type="password" class="form-control" id="password" placeholder="minimum 7 characters" />
+                  <input type="password" class="form-control" id="password" placeholder="minimum 7 characters" ng-model="signup.data.password" required />
                   <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                 </div>
 
+                <p>{{signup.data.signUpError}}</p>
+
                 <button class="btn btn-primary btn-lg btn-block" ng-click="signup.signUp()">Sign Up</button>
 
+                <!-- progress bar -->
                 <div class="progress">
                   <div class="progress-bar progress-bar-striped step-one" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4"></div>
                 </div>
@@ -42,10 +46,10 @@
                 <p>step 2 of 4</p>
 
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="your first name" />
+                <input type="text" class="form-control" id="firstName" placeholder="your first name" required />
 
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="your last name" />
+                <input type="text" class="form-control" id="lastName" placeholder="your last name" required />
 
                 <fieldset>
                   <legend>information from your utility bill</legend>

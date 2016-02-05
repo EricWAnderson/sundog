@@ -16,7 +16,7 @@
         <form class="form-group form-group-lg">
 
                 <label for="emailAddress">Email address</label>
-                <input type="email" class="form-control" id="emailAddress" required />
+                <input type="email" class="form-control" id="emailAddress" value="{{account.data.userData[0].email}}" required />
 
                 <label for="password">Password</label>
                 <div class="input-group">
@@ -25,25 +25,25 @@
                 </div>
 
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" required />
+                <input type="text" class="form-control" id="firstName" value="{{account.data.userData[0].first_name}}" required />
 
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" required />
+                <input type="text" class="form-control" id="lastName" value="{{account.data.userData[0].last_name}}" required />
 
                 <fieldset>
                   <legend>information from your utility bill</legend>
                   <label for="xcelAccountNumber">your Xcel Energy account number</label>
-                  <input type="text" class="form-control" id="xcelAccountNumber" />
+                  <input type="text" class="form-control" id="xcelAccountNumber" value="{{account.data.userData[0].xcel_account}}" />
 
                   <label for="xcelPremiseNumber">your Xcel Energy premise number</label>
-                  <input type="text" class="form-control" id="xcelPremiseNumber" />
+                  <input type="text" class="form-control" id="xcelPremiseNumber" value="{{account.data.userData[0].xcel_premise}}" />
 
                   <label for="xcelServiceAddress">your Xcel Energy service address</label>
-                  <input type="text" class="form-control" id="xcelServiceAddress" />
-                  <input type="text" class="form-control" id="xcelServiceAddress" />
+                  <input type="text" class="form-control" id="xcelServiceAddress" value="{{account.data.userData[0].xcel_street}}" />
+                  <input type="text" class="form-control" id="xcelServiceAddress" value="{{account.data.userData[0].xcel_city}}" />
 
                   <label for="electricUsage">recent month electric usage</label>
-                  <input type="range" id="electricUsage" value="50" />
+                  <input type="range" id="electricUsage" value="value="{{account.data.userData[0].electric_usage}}"" />
                 </fieldset>
 
                 <p>Agency agreement</p>

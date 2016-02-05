@@ -48,6 +48,7 @@ app.controller('signup', ['signUpService', function(signUpService){
 
 app.controller('account', ['accountService', function(accountService){
     this.data = accountService.data;
+    accountService.getUser();
 }]);
 
 app.factory('zipCodeService', ['$http', '$location', function($http, $location){
@@ -82,7 +83,15 @@ app.factory('accountService', ['$http', function($http){
 
     data.status = 'Please edit any information below as needed';
 
+    var getUser = function(){
+      $http.get('/account/data').then(function(response){
+          data.userData = response.data;
+          console.log(userData);
+      })
+    };
+
     return {
+      getUser: getUser,
       data: data
     }
 }])

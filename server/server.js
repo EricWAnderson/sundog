@@ -1,6 +1,12 @@
 var express = require('express');
+var session = require('express-session');
+var passport = require('passport');
+var localStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+
+// Mongo models
+var User = require('../models/users');
 
 // Routes
 var index = require('./routes/index');
@@ -21,11 +27,72 @@ MongoDB.once('open', function() {
 });
 
 // Configure middleware and routes
+
 app.use(bodyParser.json());
+
+app.use(session({
+    secret: 'secret',
+    key: 'user',
+    resave: true,
+    saveUninitialized: false,
+    cookie: {maxAge: 60000, secure:false}
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static('server/public'));
 app.use('/zipCode', zipCode);
 app.use('/signUp', signUp);
 app.use('/', index);
+
+// Passport
+
+passport.serializeUser(function(user, done){
+  //place ID on session so we can get user back
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done){
+  //get user object to request.user
+  User.findById(id, function(err, user){
+    if(err){
+      done(err);
+    } else {
+      done(null, user); //request.user
+    }
+  });
+});
+
+passport.use('local', new localStrategy({passReqToCallback: true, usernameField: 'emailAddress'},
+    function(req, email, password, done){
+
+            //connect to db and check password
+            User.findOne({email: email}, function(err, user){
+                if(err){
+                   console.log(err);
+                }
+
+                if(!user){
+                    done(null, false);
+                }
+
+                user.comparePassword(password, function(err, isMatch){
+                    if(err){
+                       console.log(err);
+                    }
+                    if(isMatch){
+                        done(null, user);  //success
+                    } else {
+                        done(null, false);  //fail
+                    }
+                });
+
+            });
+
+}));
+
+// Initiate server
 
 var server = app.listen(3000, function(){
    var port = server.address().port;

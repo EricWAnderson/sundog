@@ -4,32 +4,55 @@
       <h2>Lower your electric bill with SunDog</h2>
 
       <!-- if a zip code hasn't been entered, or no response yet from server -->
-        <div ng-if="!zipCode.response">
+        <div ng-if="!land.zipCode.response && !land.loginStatus">
 
             <div class="panel top-panel">
                 <div class="panel-heading">
                   <h3>see if you qualify</h3>
                 </div>
                 <div class="panel-body">
-                  <input ng-model="zipCode.input" ng-change="zipCodeKeyPress()" type="text" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
+                  <input ng-model="land.zipCode.input" ng-change="land.zipCodeKeyPress()" type="text" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
                 </div>
             </div>
 
             <div class="panel">
-                <a ng-href="/login"><h4>already signed up? login</h3></a>
+                <a ng-click="land.showLogin()"><h4>already signed up? login</h3></a>
             </div>
 
         </div>
 
       <!-- if a zip code response has been received from the server -->
-        <div ng-if="zipCode.response">
+        <div ng-if="land.zipCode.response">
 
-            <div ng-if="!zipCode.isNSP">
+            <div ng-if="!land.zipCode.isNSP">
               <div class="well">
-                   <p>Sorry. {{zipCode.utility}} is not yet eligible.</p>
+                   <p>Sorry. {{land.zipCode.utility}} is not yet eligible.</p>
               </div>
             </div>
 
+        </div>
+
+      <!-- if login button clicked -->
+        <div ng-if="land.loginStatus">
+
+          <div class="row">
+            <div class="col-md-4"></div>
+
+            <div class="col-md-4">
+                <div class="login">
+                    <label for="emailAddress">Email address</label>
+                    <input type="email" class="form-control" id="emailAddress" placeholder="your email" ng-model="land.user.emailAddress" required />
+
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                      <input type="password" class="form-control" id="password" placeholder="your password" ng-model="land.user.password" required />
+                      <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg btn-block" ng-click="land.login()">Login</button>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
         </div>
   </div>
 </div>

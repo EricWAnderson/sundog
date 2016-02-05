@@ -4,7 +4,8 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     $routeProvider
       .when('/', {
           templateUrl: 'views/landing.html',
-          controller: 'landingPage'
+          controller: 'landingPage',
+          controllerAs: 'land'
       })
       .when('/signup', {
           templateUrl: 'views/signup.html',
@@ -19,9 +20,19 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     $locationProvider.html5Mode(true);
 }]);
 
-app.controller('landingPage', ['$scope', 'zipCodeService', function($scope, zipCodeService){
-    $scope.zipCodeKeyPress = zipCodeService.keyPress;
-    $scope.zipCode = zipCodeService.data;
+app.controller('landingPage', ['zipCodeService', '$http', function(zipCodeService, $http){
+    this.zipCodeKeyPress = zipCodeService.keyPress;
+    this.zipCode = zipCodeService.data;
+    this.showLogin = function(){
+      this.loginStatus = true;
+    };
+    this.user = {};
+    this.login = function(){
+      console.log('user object is ', this.user);
+      $http.post('/', this.user).then(function(response){
+        console.log(response);
+      })
+    }
 }]);
 
 app.controller('signup', ['signUpService', function(signUpService){
@@ -40,14 +51,16 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
 
     var keyPress = function(){
       if(data.input.length==5){
-
+          console.log('input is 5!');
           //send zip code to server, get utility name back
           $http.post('/zipCode', data).then(function(response){
             //make response available to controllers
+            console.log('we got a response!', response);
             data.response = true;  //so client knows whether response received
             data.utility = response.data.name; //utility associated with client zip code
             data.isNSP = response.data.isNSP; //boolean whether client is NSP or not
 
+            console.log('is NSP?', data.isNSP);
             //if utility is NSP, send user to sign up form
             if(data.isNSP) $location.path('/signup');
 

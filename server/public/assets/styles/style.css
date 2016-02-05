@@ -94,3 +94,11 @@ h4 {
 .step-four {
   width: 80%;
 }
+
+.login {
+  display: inline-block;
+  border: 2px solid #16130b;
+  background-color: #16130b;
+  color: #dfe7ef;
+  margin: 59% auto 35% auto;
+}

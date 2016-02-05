@@ -1,3 +1,58 @@
-<div>
-    {{hello}} account
+<div class="jumbotron signup-jt">
+
+    <div class="container-fluid">
+        <h2>Welcome back, user!</h2>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+  <h4>{{account.data.status}}</h4>
+
+  <div class="row">
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4">
+        <form class="form-group form-group-lg">
+
+                <label for="emailAddress">Email address</label>
+                <input type="email" class="form-control" id="emailAddress" required />
+
+                <label for="password">Password</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="password" required />
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                </div>
+
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" required />
+
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" required />
+
+                <fieldset>
+                  <legend>information from your utility bill</legend>
+                  <label for="xcelAccountNumber">your Xcel Energy account number</label>
+                  <input type="text" class="form-control" id="xcelAccountNumber" />
+
+                  <label for="xcelPremiseNumber">your Xcel Energy premise number</label>
+                  <input type="text" class="form-control" id="xcelPremiseNumber" />
+
+                  <label for="xcelServiceAddress">your Xcel Energy service address</label>
+                  <input type="text" class="form-control" id="xcelServiceAddress" />
+                  <input type="text" class="form-control" id="xcelServiceAddress" />
+
+                  <label for="electricUsage">recent month electric usage</label>
+                  <input type="range" id="electricUsage" value="50" />
+                </fieldset>
+
+                <p>Agency agreement</p>
+
+                <p>Data Privacy agreement</p>
+
+        </form>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
 </div>

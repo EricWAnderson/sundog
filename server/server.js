@@ -12,6 +12,7 @@ var User = require('../models/users');
 var index = require('./routes/index');
 var zipCode = require('./routes/zipCode');
 var signUp = require('./routes/signUp');
+var account = require('./routes/account');
 
 var app = express();
 
@@ -42,6 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static('server/public'));
+app.use('/account', account);
 app.use('/zipCode', zipCode);
 app.use('/signUp', signUp);
 app.use('/', index);

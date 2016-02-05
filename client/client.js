@@ -14,13 +14,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       })
       .when('/account', {
           templateUrl: 'views/account.html',
-          controller: 'account'
+          controller: 'account',
+          controllerAs: 'account'
       });
 
     $locationProvider.html5Mode(true);
 }]);
 
-app.controller('landingPage', ['zipCodeService', '$http', function(zipCodeService, $http){
+app.controller('landingPage', ['zipCodeService', '$http', '$location', function(zipCodeService, $http, $location){
     this.zipCodeKeyPress = zipCodeService.keyPress;
     this.zipCode = zipCodeService.data;
     this.showLogin = function(){
@@ -28,9 +29,10 @@ app.controller('landingPage', ['zipCodeService', '$http', function(zipCodeServic
     };
     this.user = {};
     this.login = function(){
-      console.log('user object is ', this.user);
       $http.post('/', this.user).then(function(response){
-        console.log(response);
+        if(response.data._id){
+          $location.path('/account');
+        }
       })
     }
 }]);
@@ -44,7 +46,9 @@ app.controller('signup', ['signUpService', function(signUpService){
 
 }]);
 
-app.controller('account', ['$scope', function($scope){}]);
+app.controller('account', ['accountService', function(accountService){
+    this.data = accountService.data;
+}]);
 
 app.factory('zipCodeService', ['$http', '$location', function($http, $location){
     var data = {};
@@ -72,6 +76,16 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
       data: data
     }
 }]);
+
+app.factory('accountService', ['$http', function($http){
+    var data = {};
+
+    data.status = 'Please edit any information below as needed';
+
+    return {
+      data: data
+    }
+}])
 
 app.factory('signUpService', ['$http', '$location', function($http, $location){
     var data = {

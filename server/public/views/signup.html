@@ -79,7 +79,7 @@
 
                 <textarea class="form-control" rows="10" id="agencyAgreement">Agency Agreement goes here</textarea>
                 <div class="checkbox">
-                    <label><input type="checkbox">I have read and agree to the terms of the Agency agreement</label>
+                    <label><input ng-model="signup.data.agencyAgreed" type="checkbox">I have read and agree to the terms of the Agency agreement</label>
                 </div>
                 <button class="btn btn-primary btn-lg btn-block" ng-click="signup.agencyAgreement()">Sign electronically</button>
           </div>
@@ -93,7 +93,7 @@
 
                 <textarea class="form-control" rows="10" id="dataPrivacy">Data privacy agreement goes here</textarea>
                 <div class="checkbox">
-                    <label><input type="checkbox">I have read and agree to the data privacy terms</label>
+                    <label><input ng-model="signup.data.dataAgreed" type="checkbox">I have read and agree to the data privacy terms</label>
                 </div>
                 <button class="btn btn-primary btn-lg btn-block" ng-click="signup.dataPrivacyAgreement()">Sign electronically</button>
 

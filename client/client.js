@@ -113,14 +113,39 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
       console.log('next!');
     }
 
+    //called on step 3 button click
     var agencyAgreement = function(){
-      data.agencyAgreementCompleted = true;
-      console.log('signed agency!');
+      if(data.agencyAgreed){
+        $http.post('/signUp/agency', data).then(function(response){
+          if(response.status == 200){
+            console.log(response);
+            data.status = 'You\'re all set';
+
+            data.agencyAgreementCompleted = true;
+            console.log('signed agency!');
+          }
+        })
+      } else {
+        data.status = 'Please check the box to continue';
+      }
+
     }
 
     var dataPrivacyAgreement = function(){
-      data.dataAgreementCompleted = true;
-      console.log('signed data privacy!');
+      console.log('data.dataAgreed is ', data.dataAgreed);
+      if(data.dataAgreed) {
+        $http.post('/signUp/data', data).then(function(response){
+          if(response.status == 200){
+            console.log(response);
+            data.status = 'You\'re all set';
+
+            data.dataAgreementCompleted = true;
+            console.log('signed data privacy!');
+          }
+        })
+      } else {
+        data.status = 'Please check the box to continue';
+      }
     }
 
     return {

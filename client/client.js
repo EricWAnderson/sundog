@@ -120,17 +120,19 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
           if(response.status == 200){
             console.log(response);
             data.status = 'You\'re all set';
-
-            data.agencyAgreementCompleted = true;
-            console.log('signed agency!');
           }
         })
+
+        //initialize next step in view
+        data.agencyAgreementCompleted = true;
+        data.status = 'Data Privacy Agreement';
+        console.log('signed agency!');
       } else {
         data.status = 'Please check the box to continue';
       }
-
     }
 
+    //called on step 4 button click
     var dataPrivacyAgreement = function(){
       console.log('data.dataAgreed is ', data.dataAgreed);
       if(data.dataAgreed) {
@@ -138,11 +140,13 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
           if(response.status == 200){
             console.log(response);
             data.status = 'You\'re all set';
-
-            data.dataAgreementCompleted = true;
-            console.log('signed data privacy!');
           }
         })
+        //initialize next step in view
+        data.dataAgreementCompleted = true;
+        data.status = 'hurray!';
+        console.log('signed data privacy!');
+
       } else {
         data.status = 'Please check the box to continue';
       }

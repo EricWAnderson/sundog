@@ -24,6 +24,7 @@
       <!-- if a zip code response has been received from the server -->
         <div ng-if="land.zipCode.response">
 
+            <!-- displays if Xcel is the utility -->
             <div ng-if="land.zipCode.isNSP">
               <div class="well">
                   <p>Your utility Xcel Energy is eligible!</p>
@@ -33,6 +34,7 @@
               </div>
             </div>
 
+            <!-- displays if the utility is not Xcel -->
             <div ng-if="!land.zipCode.isNSP">
               <div class="well">
                    <p>Sorry. {{land.zipCode.utility}} is not yet eligible.</p>

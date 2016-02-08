@@ -48,6 +48,8 @@ app.controller('signup', ['signUpService', function(signUpService){
 
 app.controller('account', ['accountService', function(accountService){
     this.data = accountService.data;
+    this.save = accountService.save;
+    this.savedStatus = accountService.savedStatus;
     accountService.getUser();
 }]);
 
@@ -85,12 +87,26 @@ app.factory('accountService', ['$http', function($http){
 
     var getUser = function(){
       $http.get('/account/data').then(function(response){
-          data.userData = response.data;
-          console.log(userData);
+          data.user = response.data[0];
+          console.log(data.user);
       })
     };
 
+    var save = function(){
+      console.log(data.user);
+
+      $http.put('account/update', data).then(function(response){
+        console.log('response is ', response);
+        if(response.status == 200){
+          data._id = response.data._id;
+          data.savedStatus = 'changes saved successfully!';
+        }
+      })
+
+    }
+
     return {
+      save: save,
       getUser: getUser,
       data: data
     }

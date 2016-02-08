@@ -1,7 +1,7 @@
 <div class="jumbotron signup-jt">
 
     <div class="container-fluid">
-        <h2>Welcome back, user!</h2>
+        <h2>Welcome back, {{account.data.user.first_name}}!</h2>
     </div>
 
 </div>
@@ -10,49 +10,53 @@
   <h4>{{account.data.status}}</h4>
 
   <div class="row">
-    <div class="col-md-4"></div>
+    <div class="col-md-3"></div>
 
-    <div class="col-md-4">
-        <form class="form-group form-group-lg">
+    <div class="col-md-6">
+        <form class="form-group">
 
                 <label for="emailAddress">Email address</label>
-                <input type="email" class="form-control" id="emailAddress" value="{{account.data.userData[0].email}}" required />
+                <input ng-model="account.data.user.email" type="email" class="form-control" id="emailAddress" required />
 
                 <label for="password">Password</label>
                 <div class="input-group">
-                  <input type="password" class="form-control" id="password" required />
+                  <input ng-model="account.data.user.password" type="password" class="form-control" id="password" required />
                   <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                 </div>
 
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" value="{{account.data.userData[0].first_name}}" required />
+                <input ng-model="account.data.user.first_name" type="text" class="form-control" id="firstName" required />
 
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" value="{{account.data.userData[0].last_name}}" required />
+                <input ng-model="account.data.user.last_name" type="text" class="form-control" id="lastName" required />
 
                 <fieldset>
                   <legend>information from your utility bill</legend>
                   <label for="xcelAccountNumber">your Xcel Energy account number</label>
-                  <input type="text" class="form-control" id="xcelAccountNumber" value="{{account.data.userData[0].xcel_account}}" />
+                  <input ng-model="account.data.user.xcel_account" type="text" class="form-control" id="xcelAccountNumber" />
 
                   <label for="xcelPremiseNumber">your Xcel Energy premise number</label>
-                  <input type="text" class="form-control" id="xcelPremiseNumber" value="{{account.data.userData[0].xcel_premise}}" />
+                  <input ng-model="account.data.user.xcel_premise" type="text" class="form-control" id="xcelPremiseNumber" />
 
                   <label for="xcelServiceAddress">your Xcel Energy service address</label>
-                  <input type="text" class="form-control" id="xcelServiceAddress" value="{{account.data.userData[0].xcel_street}}" />
-                  <input type="text" class="form-control" id="xcelServiceAddress" value="{{account.data.userData[0].xcel_city}}" />
+                  <input ng-model="account.data.user.xcel_street" type="text" class="form-control" id="xcelServiceAddress" />
+                  <input ng-model="account.data.user.xcel_city" type="text" class="form-control" id="xcelServiceAddress" />
 
                   <label for="electricUsage">recent month electric usage</label>
-                  <input type="range" id="electricUsage" value="value="{{account.data.userData[0].electric_usage}}"" />
+                  <input ng-model="account.data.user.electric_usage" type="range" id="electricUsage" />
                 </fieldset>
 
                 <p>Agency agreement</p>
 
                 <p>Data Privacy agreement</p>
 
+                <p>{{account.data.savedStatus}}</p>
+
+                <button class="btn btn-primary btn-lg btn-block" ng-click="account.save()">Save changes</button>
+
         </form>
     </div>
 
-    <div class="col-md-4"></div>
+    <div class="col-md-3"></div>
   </div>
 </div>

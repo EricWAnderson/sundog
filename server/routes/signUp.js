@@ -6,14 +6,30 @@ var User = require('../../models/users');
 router.post('/register', function(request, response){
     console.log('hit the register! request.body is ', request.body);
     User.create({
-      email: request.body.emailAddress,
-      password: request.body.password
+      email: request.body.emailAddress
+      // password: request.body.password
     }, function(err, post){
       if(err) {
         next(err);
       } else {
         response.send(post);
       }
+    });
+});
+
+router.post('/addPassword', function(request, response){
+    console.log('hit the addPassword! request.body is ', request.body);
+    User.findById(request.body._id, function(err, userToUpdate){
+      if(err) console.log(err);
+      userToUpdate.password = request.body.password;
+
+      userToUpdate.save(function(err){
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('hurray the stuff posted to MONGOD');
+        }
+      });
     });
 });
 

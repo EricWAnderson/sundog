@@ -21,13 +21,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     $locationProvider.html5Mode(true);
 }]);
 
-app.controller('landingPage', ['zipCodeService', '$http', '$location', function(zipCodeService, $http, $location){
+app.controller('landingPage', ['zipCodeService', 'signUpService', '$http', '$location', function(zipCodeService, signUpService, $http, $location){
     this.zipCodeKeyPress = zipCodeService.keyPress;
     this.zipCode = zipCodeService.data;
     this.showLogin = function(){
       this.loginStatus = true;
     };
     this.user = {};
+
     this.login = function(){
       $http.post('/', this.user).then(function(response){
         if(response.data._id){
@@ -35,6 +36,9 @@ app.controller('landingPage', ['zipCodeService', '$http', '$location', function(
         }
       })
     }
+
+    this.reserveSpot = signUpService.reserveSpot;
+
 }]);
 
 app.controller('signup', ['signUpService', function(signUpService){
@@ -69,7 +73,7 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
 
             console.log('is NSP?', data.isNSP);
             //if utility is NSP, send user to sign up form
-            if(data.isNSP) $location.path('/signup');
+            // if(data.isNSP) $location.path('/signup');
 
           })
       }
@@ -102,7 +106,6 @@ app.factory('accountService', ['$http', function($http){
           data.savedStatus = 'changes saved successfully!';
         }
       })
-
     }
 
     return {
@@ -122,6 +125,24 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
       dataAgreementCompleted: false
     };
 
+    var reserveSpot = function(){
+        console.log('in the reserve spot function');
+        if(validateEmail(this.user.emailAddress)){
+          //register to server
+          $http.post('signUp/register', this.user).then(function(response){
+            console.log('response is ', response);
+            if(response.status == 200){
+              console.log('signed up!');
+              data.emailAddress = response.data.email;
+              data._id = response.data._id;
+              $location.path('/signup');
+            }
+          })
+        } else {
+            console.log('email invalid');
+        }
+    };
+
     //called on step 1 button click
     var signUp = function(){
       data.signUpError = '';
@@ -132,7 +153,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
         console.log('signed up!');
 
         //register to server
-        $http.post('signUp/register', data).then(function(response){
+        $http.post('signUp/addPassword', data).then(function(response){
           console.log('response is ', response);
           if(response.status == 200){
             data._id = response.data._id;
@@ -205,6 +226,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
     }
 
     return {
+      reserveSpot: reserveSpot,
       signUp: signUp,
       next: next,
       agencyAgreement: agencyAgreement,

@@ -17,7 +17,7 @@ var account = require('./routes/account');
 var app = express();
 
 // MongoDB stuff
-var mongoURI = 'mongodb://sundog:sundog98@ds059185.mongolab.com:59185/heroku_ccsjn4r1';
+var mongoURI = 'mongodb://sundog:sundog98@ds059195.mongolab.com:59195/sundog';
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 MongoDB.on('error', function(err) {

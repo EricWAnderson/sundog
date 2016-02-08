@@ -101,12 +101,4 @@ router.post('/data', function(request, response){
     })
 });
 
-router.post('/agencyAgreement', function(request, response){
-    console.log('hit the agency agreement post! request.body is ', request.body);
-});
-
-router.post('/dataAgreement', function(request, response){
-    console.log('hit the data agreement post! request.body is ', request.body);
-});
-
 module.exports = router;

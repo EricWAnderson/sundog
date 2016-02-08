@@ -53,6 +53,7 @@ app.controller('signup', ['signUpService', function(signUpService){
 app.controller('account', ['accountService', function(accountService){
     this.data = accountService.data;
     this.save = accountService.save;
+    this.logout = accountService.logout;
     this.savedStatus = accountService.savedStatus;
     accountService.getUser();
 }]);
@@ -84,7 +85,7 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
     }
 }]);
 
-app.factory('accountService', ['$http', function($http){
+app.factory('accountService', ['$http', '$location', function($http, $location){
     var data = {};
 
     data.status = 'Please edit any information below as needed';
@@ -108,8 +109,16 @@ app.factory('accountService', ['$http', function($http){
       })
     }
 
+    var logout = function(){
+      $http.get('/logout').then(function(response){
+        console.log('logged out response, ', response);
+        $location.path('/');
+      })
+    }
+
     return {
       save: save,
+      logout: logout,
       getUser: getUser,
       data: data
     }

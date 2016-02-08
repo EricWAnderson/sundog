@@ -47,6 +47,10 @@ app.use('/account', account);
 app.use('/zipCode', zipCode);
 app.use('/signUp', signUp);
 app.use('/', index);
+app.get('/logout', function(request, response){
+  request.logout();
+  response.sendStatus(200);
+});
 
 // Passport
 

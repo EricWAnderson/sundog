@@ -60,6 +60,8 @@
                       <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                     </div>
 
+                    <p ng-if="land.loginFail">{{land.loginFailMessage}}</p>
+
                     <button class="btn btn-primary btn-lg btn-block" ng-click="land.login()">Login</button>
                 </div>
             </div>

@@ -28,14 +28,23 @@ app.controller('landingPage', ['zipCodeService', 'signUpService', '$http', '$loc
       this.loginStatus = true;
     };
     this.user = {};
+    this.loginFail = false;
 
     this.login = function(){
       $http.post('/', this.user).then(function(response){
         if(response.data._id){
           $location.path('/account');
+        } else {
+          alert(response.data);
+
+          //when complete the below will display the login fail to the DOM
+          // console.log(response.data);
+          // this.loginFail = true;
+          // console.log(this.loginFail);
+          // this.loginFailMessage = response.data;
         }
       })
-    }
+    };
 
     this.reserveSpot = signUpService.reserveSpot;
 

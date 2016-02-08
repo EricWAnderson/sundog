@@ -47,6 +47,10 @@ app.use('/account', account);
 app.use('/zipCode', zipCode);
 app.use('/signUp', signUp);
 app.use('/', index);
+
+app.get('/failure', function(request, response){
+  response.send('Login failed');
+});
 app.get('/logout', function(request, response){
   request.logout();
   response.sendStatus(200);
@@ -80,7 +84,7 @@ passport.use('local', new localStrategy({passReqToCallback: true, usernameField:
                 }
 
                 if(!user){
-                    done(null, false);
+                    return done(null, false);
                 }
 
                 user.comparePassword(password, function(err, isMatch){

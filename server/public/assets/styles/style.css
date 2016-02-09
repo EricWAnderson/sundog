@@ -1,7 +1,7 @@
 .panel {
   margin: 0 auto 5% auto;
-  width: 211px;
-  border-radius: 0px;
+  width: 221px;
+  border-radius: 4px;
   border: 2px solid #16130b;
   background-color: #16130b;
   color: #dfe7ef;
@@ -28,11 +28,12 @@
 }
 
 .index-jt h1, .index-jt h2 {
-  padding-left: 10%;
+  padding-left: 6%;
 }
 
 .index-jt h1 {
   font-size: 83px;
+  font-weight: 800;
 }
 
 .signup-jt h2 {
@@ -42,7 +43,23 @@
 h4 {
   text-align: center;
   margin: 0 auto;
-  padding-bottom: 20px;
+  padding: 15px;
+}
+
+.login-button {
+  display: block;
+  margin: 0 auto 5% auto;
+  width: 221px;
+  border-radius: 4px;
+  border: 2px solid #16130b;
+  background-color: #16130b;
+  color: #dfe7ef;
+  font-size: 16px;
+  padding: 15px;
+}
+
+.login-button:hover {
+  background-color: #e63f5b;
 }
 
 .jumbotron .well {
@@ -57,7 +74,7 @@ h4 {
 .panel h3 {
   text-align: center;
   margin: 0 auto;
-  padding: 10px;
+  padding: 15px;
 }
 
 .panel h5 {
@@ -69,8 +86,14 @@ h4 {
 .zip-code {
   border-radius: 0px;
   text-align: center;
-  font-size: 40px;
+  font-size: 44px;
   height: 70px;
+  padding: 15px;
+}
+
+.zip-code:focus {
+  border-color: #16130b;
+  box-shadow: inset 0 1px 1px #16130b, 0 0 8px #16130b;
 }
 
 .progress {
@@ -97,6 +120,7 @@ h4 {
 
 .login {
   display: inline-block;
+  border-radius: 4px;
   border: 2px solid #16130b;
   background-color: #16130b;
   color: #dfe7ef;

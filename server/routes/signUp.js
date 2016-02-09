@@ -4,7 +4,8 @@ var router = express.Router();
 var User = require('../../models/users');
 
 router.post('/register', function(request, response){
-    console.log('hit the register! request.body is ', request.body);
+    console.log('hit the register');
+    console.log('hit the register! request is ', request);
     User.create({
       email: request.body.emailAddress
       // password: request.body.password

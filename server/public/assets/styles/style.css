@@ -8,7 +8,11 @@
 }
 
 .top-panel {
-  margin: 20% auto 5% auto;
+  margin: 16% auto 9% auto;
+}
+
+.bottom-panel {
+  margin: 20px auto 9% auto;
 }
 
 .panel-heading, .panel-body {
@@ -29,6 +33,7 @@
 
 .index-jt h1, .index-jt h2 {
   padding-left: 6%;
+  text-shadow: 1px 1px #dfe7ef;
 }
 
 .index-jt h1 {
@@ -38,6 +43,7 @@
 
 .signup-jt h2 {
   padding-left: 10%;
+  font-weight: 600;
 }
 
 h4 {

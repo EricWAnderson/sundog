@@ -70,31 +70,33 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-8 col-md-4">
       <div class="thumbnail">
-        <img src="..." alt="...">
+          <img src="assets/images/tablet.jpg" alt="Piggy Bank">
         <div class="caption">
           <h3>Save money</h3>
-          <p>Subscribe now to lock in our low electric rates, and save up to 10% on your electric bills. No upfront costs!</p>
-          <p>You remain a Xcel Energy customer, but purchase your power directly from the solar farm at reduced cost.</p>
+          <p>Subscribe now to lock in our low electric rates, and save up to 10% on your electric bills.</p>
+          <p>No upfront costs!</p>
+          <p>You remain an Xcel Energy customer, but purchase your power directly from the solar farm at reduced cost.</p>
         </div>
       </div>
     </div>
 
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-8 col-md-4">
       <div class="thumbnail">
-        <img src="..." alt="...">
+        <img src="assets/images/bwca.jpg" alt="Boundary Waters Canoe Area Wilderness">
         <div class="caption">
-          <h3>Clean, solar energy for everyone</h3>
-          <p>Community solar is a simple way for anyone to go solar. You purchase a subscription and then enjoy renewable solar power. Arf arf!</p>
+          <h3>Clean, solar energy</h3>
+          <p>Community solar is an easy way for anyone to go solar!</p>
+          <p>Simply purchase a subscription and then enjoy renewable solar power. Arf arf!</p>
           <p>Option to purchase 100% of your electricity from solar.</p>
         </div>
       </div>
     </div>
 
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-8 col-md-4">
       <div class="thumbnail">
-        <img src="..." alt="...">
+        <img src="assets/images/solar-modules.jpg" alt="Solar modules on house">
         <div class="caption">
           <h3>How it works</h3>
           <p>1) Subscribe today to receive a portion of your power from Sun Dog</p>
@@ -103,5 +105,17 @@
         </div>
       </div>
     </div>
+
+  <div class="col-md-12">
+    <div class="panel bottom-panel">
+        <div class="panel-heading">
+          <h3>see if you qualify</h3>
+        </div>
+        <div class="panel-body">
+          <input ng-model="land.zipCode.input" ng-change="land.zipCodeKeyPress()" type="tel" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
+        </div>
+    </div>
+  </div>
+
   </div>
 </div>

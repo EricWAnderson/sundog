@@ -141,3 +141,8 @@ label {
 .wrapper {
   padding-left: 15%;
 }
+
+input[type=range] {
+  width: 150px;
+  display: inline-block;
+}

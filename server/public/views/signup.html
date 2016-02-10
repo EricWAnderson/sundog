@@ -64,7 +64,7 @@
                   <input ng-model="signup.data.xcelCity" type="text" class="form-control" id="xcelServiceAddress" placeholder="your city" />
 
                   <label for="electricUsage">recent month electric usage</label>
-                  <input ng-model="signup.data.electricUsage" type="range" id="electricUsage" value="50" />
+                  <input ng-model="signup.data.electricUsage" type="range" id="electricUsage" value="50" /><span>{{signup.data.electricUsage}} kWh</span>
                 </fieldset>
 
                 <button class="btn btn-primary btn-lg btn-block" ng-click="signup.next()">Next</button>
@@ -103,6 +103,8 @@
           <div ng-if="signup.data.dataAgreementCompleted">
 
           <h1>Done!</h1>
+
+          <div class="getsocial gs-inline-group"></div>
 
           </div>
         </form>

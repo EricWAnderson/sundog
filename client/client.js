@@ -1,4 +1,4 @@
-var app = angular.module('sunDog', ['ngRoute']);
+var app = angular.module('sunDog', ['ngRoute', 'socialLinks']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
@@ -73,10 +73,12 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
     var keyPress = function(){
       if(data.input.length==5){
           console.log('input is 5!');
+          data.showSpinner = true;
           //send zip code to server, get utility name back
           $http.post('/zipCode', data).then(function(response){
             //make response available to controllers
             console.log('we got a response!', response);
+            data.showSpinner = false;
             data.response = true;  //so client knows whether response received
             data.utility = response.data.name; //utility associated with client zip code
             data.isNSP = response.data.isNSP; //boolean whether client is NSP or not
@@ -235,7 +237,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
         })
         //initialize next step in view
         data.dataAgreementCompleted = true;
-        data.status = 'hurray!';
+        data.status = 'arf arf!';
         console.log('signed data privacy!');
 
       } else {

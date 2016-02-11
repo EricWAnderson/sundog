@@ -13,7 +13,8 @@
                   <h3>see if you qualify</h3>
                 </div>
                 <div class="panel-body">
-                  <input ng-model="land.zipCode.input" ng-change="land.zipCodeKeyPress()" type="tel" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
+                  <input ng-if="!land.zipCode.showSpinner" ng-model="land.zipCode.input" ng-change="land.zipCodeKeyPress()" type="tel" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
+                  <i ng-if="land.zipCode.showSpinner" class="fa fa-cog fa-spin fa-5x"></i>
                 </div>
             </div>
 

@@ -102,9 +102,16 @@
           <!-- Displays signup form success! -->
           <div ng-if="signup.data.dataAgreementCompleted">
 
-          <h1>Done!</h1>
+          <h1>Thanks for signing up!</h1>
 
-          <div class="getsocial gs-inline-group"></div>
+          <h3>Next steps:</h3>
+          <p>Sun Dog will process your request and be in touch.</p>
+          <p>Share you're going solar!</p>
+
+          <a social-twitter status="I'm going solar! join me: http://sundog.herokuapp.com" custom-url="http://sundog.herokuapp.com"><i class="fa fa-twitter-square fa-5x"></i></a>
+          <a social-facebook custom-url="http://sundog.herokuapp.com"><i class="fa fa-facebook-square fa-5x"></i></a>
+          <a social-pinterest custom-url="http://sundog.herokuapp.com" media="http://lorempixel.com/100/100/nature/1"><i class="fa fa-pinterest-square fa-5x"></i></a>
+          <a social-linkedin custom-url="http://sundog.herokuapp.com"><i class="fa fa-linkedin-square fa-5x"></i></a>
 
           </div>
         </form>

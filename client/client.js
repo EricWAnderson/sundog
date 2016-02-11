@@ -81,12 +81,11 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
 
     var keyPress = function(){
       if(data.input.length==5){
-          console.log('input is 5!');
           data.showSpinner = true;
+
           //send zip code to server, get utility name back
           $http.post('/zipCode', data).then(function(response){
             //make response available to controllers
-            console.log('we got a response!', response);
             data.showSpinner = false;
             data.response = true;  //so client knows whether response received
             data.utility = response.data.name; //utility associated with client zip code
@@ -110,15 +109,11 @@ app.factory('accountService', ['$http', '$location', function($http, $location){
     var getUser = function(){
       $http.get('/account/data').then(function(response){
           data.user = response.data[0];
-          console.log(data.user);
       })
     };
 
     var save = function(){
-      console.log(data.user);
-
       $http.put('account/update', data).then(function(response){
-        console.log('response is ', response);
         if(response.status == 200){
           data._id = response.data._id;
           data.savedStatus = 'changes saved successfully!';
@@ -128,7 +123,6 @@ app.factory('accountService', ['$http', '$location', function($http, $location){
 
     var logout = function(){
       $http.get('/logout').then(function(response){
-        console.log('logged out response, ', response);
         $location.path('/');
       })
     }
@@ -153,13 +147,10 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
     };
 
     var reserveSpot = function(){
-        console.log('in the reserve spot function');
         if(validateEmail(this.user.emailAddress)){
           //register to server
           $http.post('signUp/register', this.user).then(function(response){
-            console.log('response is ', response);
             if(response.status == 200){
-              console.log('signed up!');
               data.emailAddress = response.data.email;
               data._id = response.data._id;
               $location.path('/signup');
@@ -173,15 +164,12 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
     //called on step 1 button click
     var signUp = function(){
       data.signUpError = '';
-      console.log('email address is', data.emailAddress);
-
+      
       if(validatePassword(data.password) && validateEmail(data.emailAddress)){
         data.signUpCompleted = true;
-        console.log('signed up!');
 
         //register to server
         $http.post('signUp/addPassword', data).then(function(response){
-          console.log('response is ', response);
           if(response.status == 200){
             data._id = response.data._id;
             data.status = 'Registration successful';
@@ -210,7 +198,6 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
       })
 
       data.nextCompleted = true;  //used to reset the view
-      console.log('next!');
     }
 
     //called on step 3 button click
@@ -218,7 +205,6 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
       if(data.agencyAgreed){
         $http.post('/signUp/agency', data).then(function(response){
           if(response.status == 200){
-            console.log(response);
             data.status = 'You\'re all set';
           }
         })
@@ -226,7 +212,6 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
         //initialize next step in view
         data.agencyAgreementCompleted = true;
         data.status = 'Data Privacy Agreement';
-        console.log('signed agency!');
       } else {
         data.status = 'Please check the box to continue';
       }
@@ -234,18 +219,15 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
 
     //called on step 4 button click
     var dataPrivacyAgreement = function(){
-      console.log('data.dataAgreed is ', data.dataAgreed);
       if(data.dataAgreed) {
         $http.post('/signUp/data', data).then(function(response){
           if(response.status == 200){
-            console.log(response);
             data.status = 'You\'re all set';
           }
         })
         //initialize next step in view
         data.dataAgreementCompleted = true;
         data.status = 'arf arf!';
-        console.log('signed data privacy!');
 
       } else {
         data.status = 'Please check the box to continue';

@@ -4,8 +4,6 @@ var router = express.Router();
 var User = require('../../models/users');
 
 router.post('/register', function(request, response){
-    console.log('hit the register');
-    console.log('hit the register! request is ', request);
     User.create({
       email: request.body.emailAddress
       // password: request.body.password
@@ -19,7 +17,6 @@ router.post('/register', function(request, response){
 });
 
 router.post('/addPassword', function(request, response){
-    console.log('hit the addPassword! request.body is ', request.body);
     User.findById(request.body._id, function(err, userToUpdate){
       if(err) console.log(err);
       userToUpdate.password = request.body.password;
@@ -35,7 +32,6 @@ router.post('/addPassword', function(request, response){
 });
 
 router.post('/account', function(request, response){
-    console.log('hit the account post! request.body._id is ', request.body._id);
     User.findById(request.body._id, function(err, userToUpdate){
       if(err) console.log(err);
       userToUpdate.first_name = request.body.firstName;
@@ -57,7 +53,6 @@ router.post('/account', function(request, response){
 });
 
 router.post('/agency', function(request, response){
-    console.log('hit the agency post! request.body._id is ', request.body._id);
     User.findById(request.body._id, function(err, userToUpdate){
       if(err) console.log(err);
       userToUpdate.agency_signed = request.body.agencyAgreed;
@@ -80,7 +75,6 @@ router.post('/agency', function(request, response){
 });
 
 router.post('/data', function(request, response){
-    console.log('hit the data post! request.body._id is ', request.body._id);
     User.findById(request.body._id, function(err, userToUpdate){
       if(err) console.log(err);
       userToUpdate.data_privacy_signed = request.body.dataAgreed;

@@ -27,21 +27,16 @@ app.controller('landingPage', ['zipCodeService', 'signUpService', '$http', '$loc
     this.showLogin = function(){
       this.loginStatus = true;
     };
-    this.user = {};
+    // this.user = {};
     this.loginFail = false;
 
+    //checks login credentials and redirects to /account if authenticated
     this.login = function(){
       $http.post('/', this.user).then(function(response){
         if(response.data._id){
           $location.path('/account');
         } else {
           alert(response.data);
-
-          //when complete the below will display the login fail to the DOM
-          // console.log(response.data);
-          // this.loginFail = true;
-          // console.log(this.loginFail);
-          // this.loginFailMessage = response.data;
         }
       })
     };
@@ -50,15 +45,16 @@ app.controller('landingPage', ['zipCodeService', 'signUpService', '$http', '$loc
 
 }]);
 
+//makes signUpService functionality/data available on page
 app.controller('signup', ['signUpService', function(signUpService){
     this.data = signUpService.data;
     this.signUp = signUpService.signUp;
     this.next = signUpService.next;
     this.agencyAgreement = signUpService.agencyAgreement;
     this.dataPrivacyAgreement = signUpService.dataPrivacyAgreement;
-
 }]);
 
+//makes accountService functionality/data availalbe on page, and retrieves User
 app.controller('account', ['accountService', function(accountService){
     this.data = accountService.data;
     this.save = accountService.save;
@@ -67,6 +63,7 @@ app.controller('account', ['accountService', function(accountService){
     accountService.getUser();
 }]);
 
+//after 5 numbers entered, checks zip code vs API, returns utility
 app.factory('zipCodeService', ['$http', '$location', function($http, $location){
     var data = {};
 
@@ -83,10 +80,6 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
             data.utility = response.data.name; //utility associated with client zip code
             data.isNSP = response.data.isNSP; //boolean whether client is NSP or not
 
-            console.log('is NSP?', data.isNSP);
-            //if utility is NSP, send user to sign up form
-            // if(data.isNSP) $location.path('/signup');
-
           })
       }
     }
@@ -96,6 +89,7 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
     }
 }]);
 
+//provides get user and update user functionality
 app.factory('accountService', ['$http', '$location', function($http, $location){
     var data = {};
 
@@ -135,6 +129,7 @@ app.factory('accountService', ['$http', '$location', function($http, $location){
     }
 }])
 
+//captures sign up information and posts to database
 app.factory('signUpService', ['$http', '$location', function($http, $location){
     var data = {
       status: 'Join Sun Dog and sign up for solar today!',
@@ -255,6 +250,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
     }
 }]);
 
+//checks whether password meets parameters
 var validatePassword = function(password){
   if(password.length >= 7){
     return true;
@@ -263,6 +259,7 @@ var validatePassword = function(password){
   }
 }
 
+//checks whether email matches xyz@xyz.com format
 var validateEmail = function(email) {
     var emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(email.match(emailformat)){

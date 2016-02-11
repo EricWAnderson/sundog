@@ -13,47 +13,124 @@
     <div class="col-md-3"></div>
 
     <div class="col-md-6">
-        <form class="form-group">
+      <ul>
+        <li>Email address</li>
+        <li>
+            <span ng-show="account.emailShow">{{account.data.user.email}}</span>
+            <input ng-hide="account.emailShow" ng-model="account.data.user.email" type="email" class="form-control account-input" id="emailAddress" required />
+        </li>
+        <li>
+            <button ng-show="account.emailShow" ng-click="account.emailShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
+            <button ng-hide="account.emailShow" ng-click="account.emailShow = true" class="btn btn-success">Save</button>
+        </li>
+      </ul>
+      <ul>
+        <li>Password</li>
+        <li>
+          <span ng-show="account.passwordShow">hidden</span>
+          <input ng-hide="account.passwordShow" ng-model="account.data.user.password" type="password" class="form-control" id="password" required />
+        </li>
+        <li>
+          <button ng-show="account.passwordShow" ng-click="account.passwordShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
+          <button ng-hide="account.passwordShow" ng-click="account.passwordShow = true" class="btn btn-success">Save</button>
+        </li>
+      </ul>
 
-                <label for="emailAddress">Email address</label>
-                <input ng-model="account.data.user.email" type="email" class="form-control" id="emailAddress" required />
+      <ul>
+        <li>First name</li>
+        <li>
+          <span ng-show="account.firstNameShow">{{account.data.user.first_name}}</span>
+          <input ng-hide="account.firstNameShow" ng-model="account.data.user.first_name" type="text" class="form-control" id="firstName" required />
+        </li>
+        <li>
+          <button ng-show="account.firstNameShow" ng-click="account.firstNameShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
+          <button ng-hide="account.firstNameShow" ng-click="account.firstNameShow = true" class="btn btn-success">Save</button>
+        </li>
+      </ul>
 
-                <label for="password">Password</label>
-                <div class="input-group">
-                  <input ng-model="account.data.user.password" type="password" class="form-control" id="password" required />
-                  <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                </div>
+      <ul>
+        <li>Last name</li>
+        <li>
+          <span ng-show="account.lastNameShow">{{account.data.user.last_name}}</span>
+          <input ng-hide="account.lastNameShow" ng-model="account.data.user.last_name" type="text" class="form-control" id="lastName" required />
+        </li>
+        <li>
+          <button ng-show="account.lastNameShow" ng-click="account.lastNameShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
+          <button ng-hide="account.lastNameShow" ng-click="account.lastNameShow = true" class="btn btn-success">Save</button>
+        </li>
+      </ul>
 
-                <label for="firstName">First Name</label>
-                <input ng-model="account.data.user.first_name" type="text" class="form-control" id="firstName" required />
+      <ul>
+        <li>Xcel Account number</li>
+        <li>
+          <span ng-show="account.accountShow">{{account.data.user.xcel_account}}</span>
+          <input ng-hide="account.accountShow" ng-model="account.data.user.xcel_account" type="text" class="form-control" id="xcelAccountNumber" />
+        </li>
+        <li>
+          <button ng-show="account.accountShow" ng-click="account.accountShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
+          <button ng-hide="account.accountShow" ng-click="account.accountShow = true" class="btn btn-success">Save</button>
+        </li>
+      </ul>
 
-                <label for="lastName">Last Name</label>
-                <input ng-model="account.data.user.last_name" type="text" class="form-control" id="lastName" required />
+      <ul>
+        <li>Xcel Premise number</li>
+        <li>
+          <span ng-show="account.premiseShow">{{account.data.user.xcel_premise}}</span>
+          <input ng-hide="account.premiseShow" ng-model="account.data.user.xcel_premise" type="text" class="form-control" id="xcelPremiseNumber" />
+        </li>
+        <li>
+          <button ng-show="account.premiseShow" ng-click="account.premiseShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
+          <button ng-hide="account.premiseShow" ng-click="account.premiseShow = true" class="btn btn-success">Save</button>
+        </li>
+      </ul>
 
-                <fieldset>
-                  <legend>information from your utility bill</legend>
-                  <label for="xcelAccountNumber">your Xcel Energy account number</label>
-                  <input ng-model="account.data.user.xcel_account" type="text" class="form-control" id="xcelAccountNumber" />
+      <ul>
+        <li>Street address</li>
+        <li>
+          <span ng-show="account.streetShow">{{account.data.user.xcel_street}}</span>
+          <input ng-hide="account.streetShow" ng-model="account.data.user.xcel_street" type="text" class="form-control" id="xcelServiceAddress" />
+        </li>
+        <li>
+          <button ng-show="account.streetShow" ng-click="account.streetShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
+          <button ng-hide="account.streetShow" ng-click="account.streetShow = true" class="btn btn-success">Save</button>
+        </li>
+      </ul>
 
-                  <label for="xcelPremiseNumber">your Xcel Energy premise number</label>
-                  <input ng-model="account.data.user.xcel_premise" type="text" class="form-control" id="xcelPremiseNumber" />
+      <ul>
+        <li>City</li>
+        <li>
+          <span ng-show="account.cityShow">{{account.data.user.xcel_city}}</span>
+          <input ng-hide="account.cityShow" ng-model="account.data.user.xcel_city" type="text" class="form-control" id="xcelServiceAddress" />
+        </li>
+        <li>
+          <button ng-show="account.cityShow" ng-click="account.cityShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
+          <button ng-hide="account.cityShow" ng-click="account.cityShow = true" class="btn btn-success">Save</button>
+        </li>
+      </ul>
 
-                  <label for="xcelServiceAddress">your Xcel Energy service address</label>
-                  <input ng-model="account.data.user.xcel_street" type="text" class="form-control" id="xcelServiceAddress" />
-                  <input ng-model="account.data.user.xcel_city" type="text" class="form-control" id="xcelServiceAddress" />
+      <ul>
+        <li>Recent month electric usage</li>
+        <li>
+          <span ng-show="account.usageShow">{{account.data.user.electric_usage}} kWh</span>
+          <span ng-hide="account.usageShow"><input ng-model="account.data.user.electric_usage" type="range" id="electricUsage" /> {{account.data.user.electric_usage}} kWh</span>
+        </li>
+        <li>
+          <button ng-show="account.usageShow" ng-click="account.usageShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i>Edit</button>
+          <button ng-hide="account.usageShow" ng-click="account.usageShow = true" class="btn btn-success">Save</button>
+        </li>
+      </ul>
 
-                  <label for="electricUsage">recent month electric usage</label>
-                  <input ng-model="account.data.user.electric_usage" type="range" id="electricUsage" />
-                </fieldset>
+      <ul>
+        <li><a href="/">Agency agreement</a></li>
+      </ul>
+      <ul>
+        <li><a href="/">Data Privacy agreement</a></li>
+      </ul>
 
-                <p>Agency agreement</p>
+          <p>{{account.data.savedStatus}}</p>
 
-                <p>Data Privacy agreement</p>
-
-                <p>{{account.data.savedStatus}}</p>
-
-                <button class="btn btn-primary btn-lg btn-block" ng-click="account.save()">Save changes</button>
-                <button class="btn btn-danger btn-lg btn-block" ng-click="account.logout()">Logout</button>
+          <button class="btn btn-primary btn-lg btn-block" ng-click="account.save()">Save changes</button>
+          <button class="btn btn-danger btn-lg btn-block" ng-click="account.logout()">Logout</button>
 
         </form>
     </div>

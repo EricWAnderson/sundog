@@ -144,6 +144,25 @@ label {
 }
 
 input[type=range] {
-  width: 150px;
+  width: 100px;
   display: inline-block;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+  width: 30%;
+}
+
+li:first-child {
+  font-weight: bolder;
+  width: 30%;
+}
+
+.account-input {
+  display: inline-block;
+  width: 200px;
 }

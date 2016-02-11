@@ -61,6 +61,18 @@ app.controller('account', ['accountService', function(accountService){
     this.logout = accountService.logout;
     this.savedStatus = accountService.savedStatus;
     accountService.getUser();
+
+    //initiate initial state of account form
+    this.emailShow = true;
+    this.passwordShow = true;
+    this.firstNameShow = true;
+    this.lastNameShow = true;
+    this.accountShow = true;
+    this.premiseShow = true;
+    this.streetShow = true;
+    this.cityShow = true;
+    this.usageShow = true;
+
 }]);
 
 //after 5 numbers entered, checks zip code vs API, returns utility

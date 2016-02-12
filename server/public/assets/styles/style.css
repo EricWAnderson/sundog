@@ -166,3 +166,21 @@ li:first-child {
   display: inline-block;
   width: 200px;
 }
+
+/****** tooltips ******/
+.xcel-account, .xcel-premise, .xcel-address, .xcel-usage {
+  display: inline-block;
+}
+
+.xcel-account-tooltip, .xcel-premise-tooltip, .xcel-address-tooltip, .xcel-usage-tooltip {
+  display: none;
+}
+
+.xcel-account:hover .xcel-account-tooltip, .xcel-premise:hover .xcel-premise-tooltip, .xcel-address:hover .xcel-address-tooltip, .xcel-usage:hover .xcel-usage-tooltip {
+    display: inline;
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+}

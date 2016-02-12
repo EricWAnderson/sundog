@@ -54,16 +54,44 @@
                 <fieldset>
                   <legend>information from your utility bill</legend>
                   <label for="xcelAccountNumber">your Xcel Energy account number</label>
+                  <div class="xcel-account">
+                    <i class="fa fa-question-circle fa-lg"></i>
+                    <p class="xcel-account-tooltip">
+                      Found on Page 1 of your Xcel Energy utility bill
+                      <img src="assets/images/xcel-account.png" />
+                    </p>
+                  </div>
                   <input ng-model="signup.data.xcelAccountNumber" type="text" class="form-control" id="xcelAccountNumber" placeholder="_ _ _ _ _ _ _" />
 
                   <label for="xcelPremiseNumber">your Xcel Energy premise number</label>
+                  <div class="xcel-premise">
+                    <i class="fa fa-question-circle fa-lg"></i>
+                    <p class="xcel-premise-tooltip">
+                      Found on Page 2 of your Xcel Energy utility bill
+                      <img src="assets/images/xcel-premise.png" />
+                    </p>
+                  </div>
                   <input ng-model="signup.data.xcelPremiseNumber" type="text" class="form-control" id="xcelPremiseNumber" placeholder="_ _ _ _ _ _ _ _ _" />
 
                   <label for="xcelServiceAddress">your Xcel Energy service address</label>
+                  <div class="xcel-address">
+                    <i class="fa fa-question-circle fa-lg"></i>
+                    <p class="xcel-address-tooltip">
+                      Found on Page 1 of your Xcel Energy utility bill
+                      <img src="assets/images/xcel-address.png" />
+                    </p>
+                  </div>
                   <input ng-model="signup.data.xcelServiceAddress" type="text" class="form-control" id="xcelServiceAddress" placeholder="your street address" />
                   <input ng-model="signup.data.xcelCity" type="text" class="form-control" id="xcelServiceAddress" placeholder="your city" />
 
                   <label for="electricUsage">recent month electric usage</label>
+                  <div class="xcel-usage">
+                    <i class="fa fa-question-circle fa-lg"></i>
+                    <p class="xcel-usage-tooltip">
+                      Found on Page 1 of your Xcel Energy utility bill
+                      <img src="assets/images/xcel-usage.png" />
+                    </p>
+                  </div>
                   <input ng-model="signup.data.electricUsage" type="range" id="electricUsage" value="50" /><span>{{signup.data.electricUsage}} kWh</span>
                 </fieldset>
 

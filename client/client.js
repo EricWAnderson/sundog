@@ -164,7 +164,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
     //called on step 1 button click
     var signUp = function(){
       data.signUpError = '';
-      
+
       if(validatePassword(data.password) && validateEmail(data.emailAddress)){
         data.signUpCompleted = true;
 

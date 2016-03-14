@@ -1,3 +1,32 @@
+h4 {
+  text-align: center;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+label {
+  padding: 10px;
+}
+
+input[type=range] {
+  width: 100px;
+  display: inline-block;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+  width: 30%;
+}
+
+li:first-child {
+  font-weight: bolder;
+  width: 30%;
+}
+
 .panel {
   margin: 0 auto 5% auto;
   width: 221px;
@@ -46,12 +75,6 @@
 .signup-jt h2 {
   padding-left: 10%;
   font-weight: 600;
-}
-
-h4 {
-  text-align: center;
-  margin: 0 auto;
-  padding: 15px;
 }
 
 .login-button {
@@ -136,31 +159,8 @@ h4 {
   padding: 15px;
 }
 
-label {
-  padding: 10px;
-}
-
 .wrapper {
   padding-left: 15%;
-}
-
-input[type=range] {
-  width: 100px;
-  display: inline-block;
-}
-
-ul {
-  list-style-type: none;
-}
-
-li {
-  display: inline-block;
-  width: 30%;
-}
-
-li:first-child {
-  font-weight: bolder;
-  width: 30%;
 }
 
 .account-input {

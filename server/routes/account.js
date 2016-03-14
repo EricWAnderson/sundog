@@ -9,7 +9,7 @@ router.get('/', function(request, response){
 
 router.get('/data', function(request, response){
   // grab User's current data and return to client
-  User.find({_id: request.user._id}, function(err, userData){
+  User.findById(request.user._id, function(err, userData){
     if (err) {
       console.log(err);
     } else {

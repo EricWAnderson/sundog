@@ -8,22 +8,22 @@
 
 <div class="container-fluid">
   <h4>{{account.data.status}}</h4>
-
   <div class="row">
     <div class="col-md-3"></div>
-
     <div class="col-md-6">
+
       <ul>
         <li>Email address</li>
         <li>
-            <span ng-show="account.emailShow">{{account.data.user.email}}</span>
-            <input ng-hide="account.emailShow" ng-model="account.data.user.email" type="email" class="form-control account-input" id="emailAddress" required />
+          <span ng-show="account.emailShow">{{account.data.user.email}}</span>
+          <input ng-hide="account.emailShow" ng-model="account.data.user.email" type="email" class="form-control account-input" id="emailAddress" required />
         </li>
         <li>
-            <button ng-show="account.emailShow" ng-click="account.emailShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
-            <button ng-hide="account.emailShow" ng-click="account.emailShow = true" class="btn btn-success">Save</button>
+          <button ng-show="account.emailShow" ng-click="account.emailShow = false" class="btn btn-danger"><i class="fa fa-pencil fa-x3"></i> Edit</button>
+          <button ng-hide="account.emailShow" ng-click="account.emailShow = true" class="btn btn-success">Save</button>
         </li>
       </ul>
+
       <ul>
         <li>Password</li>
         <li>

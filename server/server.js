@@ -5,10 +5,16 @@ var localStrategy = require('passport-local').Strategy;
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-// Mongo models
+//[][][][][][][][][][][][][][][][][][][]
+//            Mongo models
+//[][][][][][][][][][][][][][][][][][][]
+
 var User = require('../models/users');
 
-// Routes
+//[][][][][][][][][][][][][][][][][][][]
+//              Routes
+//[][][][][][][][][][][][][][][][][][][]
+
 var index = require('./routes/index');
 var zipCode = require('./routes/zipCode');
 var signUp = require('./routes/signUp');
@@ -16,7 +22,10 @@ var account = require('./routes/account');
 
 var app = express();
 
-// MongoDB stuff
+//[][][][][][][][][][][][][][][][][][][]
+//          MongoDB stuff
+//[][][][][][][][][][][][][][][][][][][]
+
 var mongoURI = 'mongodb://sundog:sundog98@ds059195.mongolab.com:59195/sundog';
 var MongoDB = mongoose.connect(mongoURI).connection;
 
@@ -27,7 +36,9 @@ MongoDB.once('open', function() {
     console.log('mongodb connection open!');
 });
 
-// Configure middleware and routes
+//[][][][][][][][][][][][][][][][][][][]
+//    Configure middleware and routes
+//[][][][][][][][][][][][][][][][][][][]
 
 app.use(bodyParser.json());
 
@@ -56,7 +67,9 @@ app.get('/logout', function(request, response){
   response.sendStatus(200);
 });
 
-// Passport
+//[][][][][][][][][][][][][][][][][][][]
+//              Passport
+//[][][][][][][][][][][][][][][][][][][]
 
 passport.serializeUser(function(user, done){
   //place ID on session so we can get user back
@@ -102,7 +115,9 @@ passport.use('local', new localStrategy({passReqToCallback: true, usernameField:
 
 }));
 
-// Initiate server
+//[][][][][][][][][][][][][][][][][][][]
+//           Initiate server
+//[][][][][][][][][][][][][][][][][][][]
 
 var server = app.listen(process.env.PORT || 3000, function(){
    var port = server.address().port;

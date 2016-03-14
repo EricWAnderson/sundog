@@ -4,24 +4,24 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     $routeProvider
       .when('/', {
           templateUrl: 'views/landing.html',
-          controller: 'landingPage',
-          controllerAs: 'land'
+          controller: 'LandingController',
+          controllerAs: 'landing'
       })
       .when('/signup', {
           templateUrl: 'views/signup.html',
-          controller: 'signup',
+          controller: 'SignupController',
           controllerAs: 'signup'
       })
       .when('/account', {
           templateUrl: 'views/account.html',
-          controller: 'account',
+          controller: 'AccountController',
           controllerAs: 'account'
       });
 
     $locationProvider.html5Mode(true);
 }]);
 
-app.controller('landingPage', ['zipCodeService', 'signUpService', '$http', '$location', function(zipCodeService, signUpService, $http, $location){
+app.controller('LandingController', ['zipCodeService', 'signUpService', '$http', '$location', function(zipCodeService, signUpService, $http, $location){
     this.zipCodeKeyPress = zipCodeService.keyPress;
     this.zipCode = zipCodeService.data;
     this.showLogin = function(){
@@ -38,7 +38,7 @@ app.controller('landingPage', ['zipCodeService', 'signUpService', '$http', '$loc
         } else {
           alert(response.data);
         }
-      })
+      });
     };
 
     this.reserveSpot = signUpService.reserveSpot;
@@ -46,7 +46,7 @@ app.controller('landingPage', ['zipCodeService', 'signUpService', '$http', '$loc
 }]);
 
 //makes signUpService functionality/data available on page
-app.controller('signup', ['signUpService', function(signUpService){
+app.controller('SignupController', ['signUpService', function(signUpService){
     this.data = signUpService.data;
     this.signUp = signUpService.signUp;
     this.next = signUpService.next;
@@ -55,7 +55,7 @@ app.controller('signup', ['signUpService', function(signUpService){
 }]);
 
 //makes accountService functionality/data availalbe on page, and retrieves User
-app.controller('account', ['accountService', function(accountService){
+app.controller('AccountController', ['accountService', function(accountService){
     this.data = accountService.data;
     this.save = accountService.save;
     this.logout = accountService.logout;
@@ -93,23 +93,25 @@ app.factory('zipCodeService', ['$http', '$location', function($http, $location){
 
           })
       }
-    }
+    };
+
     return {
       keyPress: keyPress,
       data: data
-    }
+    };
+
 }]);
 
 //provides get user and update user functionality
 app.factory('accountService', ['$http', '$location', function($http, $location){
-    var data = {};
-
-    data.status = 'Please edit any information below as needed';
+    var data = {
+      status: 'Please edit any information below as needed'
+    };
 
     var getUser = function(){
       $http.get('/account/data').then(function(response){
           data.user = response.data[0];
-      })
+      });
     };
 
     var save = function(){
@@ -118,21 +120,21 @@ app.factory('accountService', ['$http', '$location', function($http, $location){
           data._id = response.data._id;
           data.savedStatus = 'changes saved successfully!';
         }
-      })
-    }
+      });
+    };
 
     var logout = function(){
       $http.get('/logout').then(function(response){
         $location.path('/');
-      })
-    }
+      });
+    };
 
     return {
       save: save,
       logout: logout,
       getUser: getUser,
       data: data
-    }
+    };
 }])
 
 //captures sign up information and posts to database
@@ -155,7 +157,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
               data._id = response.data._id;
               $location.path('/signup');
             }
-          })
+          });
         } else {
             console.log('email invalid');
         }
@@ -174,7 +176,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
             data._id = response.data._id;
             data.status = 'Registration successful';
           }
-        })
+        });
 
       } else {
         if(!validatePassword(data.password)){
@@ -186,7 +188,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
         console.log('nope');
       }
 
-    }
+    };
 
     //called on step 2 button click
     var next = function(){
@@ -195,7 +197,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
         if(response.status == 200){
           data.status = 'You\'re all set';
         }
-      })
+      });
 
       data.nextCompleted = true;  //used to reset the view
     }
@@ -215,16 +217,18 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
       } else {
         data.status = 'Please check the box to continue';
       }
-    }
+    };
 
     //called on step 4 button click
     var dataPrivacyAgreement = function(){
+
       if(data.dataAgreed) {
         $http.post('/signUp/data', data).then(function(response){
           if(response.status == 200){
             data.status = 'You\'re all set';
           }
-        })
+        });
+
         //initialize next step in view
         data.dataAgreementCompleted = true;
         data.status = 'arf arf!';
@@ -232,7 +236,7 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
       } else {
         data.status = 'Please check the box to continue';
       }
-    }
+    };
 
     return {
       reserveSpot: reserveSpot,
@@ -241,7 +245,8 @@ app.factory('signUpService', ['$http', '$location', function($http, $location){
       agencyAgreement: agencyAgreement,
       dataPrivacyAgreement: dataPrivacyAgreement,
       data: data
-    }
+    };
+
 }]);
 
 //checks whether password meets parameters
@@ -251,7 +256,7 @@ var validatePassword = function(password){
   } else {
     return false;
   }
-}
+};
 
 //checks whether email matches xyz@xyz.com format
 var validateEmail = function(email) {
@@ -261,4 +266,4 @@ var validateEmail = function(email) {
     } else {
       return false;
     }
-}
+};

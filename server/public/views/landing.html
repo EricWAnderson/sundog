@@ -6,47 +6,47 @@
   <div class="container">
 
       <!-- if a zip code hasn't been entered, or no response yet from server -->
-        <div ng-if="!land.zipCode.response && !land.loginStatus">
+        <div ng-if="!landing.zipCode.response && !landing.loginStatus">
 
             <div class="panel top-panel">
                 <div class="panel-heading">
                   <h3>see if you qualify</h3>
                 </div>
                 <div class="panel-body">
-                  <input ng-if="!land.zipCode.showSpinner" ng-model="land.zipCode.input" ng-change="land.zipCodeKeyPress()" type="tel" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
-                  <i ng-if="land.zipCode.showSpinner" class="fa fa-cog fa-spin fa-5x"></i>
+                  <input ng-if="!landing.zipCode.showSpinner" ng-model="landing.zipCode.input" ng-change="landing.zipCodeKeyPress()" type="tel" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
+                  <i ng-if="landing.zipCode.showSpinner" class="fa fa-cog fa-spin fa-5x"></i>
                 </div>
             </div>
 
-            <button class="login-button" ng-click="land.showLogin()">already signed up? login</button>
+            <button class="login-button" ng-click="landing.showLogin()">already signed up? login</button>
 
         </div>
 
       <!-- if a zip code response has been received from the server -->
-        <div ng-if="land.zipCode.response">
+        <div ng-if="landing.zipCode.response">
 
             <!-- displays if Xcel is the utility -->
-            <div ng-if="land.zipCode.isNSP">
+            <div ng-if="landing.zipCode.isNSP">
               <form class="well">
                   <p>Your utility Xcel Energy is eligible!</p>
                   <label for="emailAddress">Email address</label>
-                  <input type="email" class="form-control" id="emailAddress" placeholder="your email" ng-model="land.user.emailAddress" required />
+                  <input type="email" class="form-control" id="emailAddress" placeholder="your email" ng-model="landing.user.emailAddress" required />
                   <br />
-                  <button class="btn btn-primary btn-lg btn-block" ng-click="land.reserveSpot()">Reserve your spot now!</button>
+                  <button class="btn btn-primary btn-lg btn-block" ng-click="landing.reserveSpot()">Reserve your spot now!</button>
               </form>
             </div>
 
             <!-- displays if the utility is not Xcel -->
-            <div ng-if="!land.zipCode.isNSP">
+            <div ng-if="!landing.zipCode.isNSP">
               <div class="well">
-                   <p>Sorry. {{land.zipCode.utility}} is not yet eligible.</p>
+                   <p>Sorry. {{landing.zipCode.utility}} is not yet eligible.</p>
               </div>
             </div>
 
         </div>
 
       <!-- if login button clicked -->
-        <div ng-if="land.loginStatus">
+        <div ng-if="landing.loginStatus">
 
           <div class="row">
             <div class="col-md-4"></div>
@@ -54,17 +54,17 @@
             <div class="col-md-4">
                 <form class="login">
                     <label for="emailAddress">Email address</label>
-                    <input type="email" class="form-control" id="emailAddress" placeholder="your email" ng-model="land.user.emailAddress" required />
+                    <input type="email" class="form-control" id="emailAddress" placeholder="your email" ng-model="landing.user.emailAddress" required />
 
                     <label for="password">Password</label>
                     <div class="input-group">
-                      <input type="password" class="form-control" id="password" placeholder="your password" ng-model="land.user.password" required />
+                      <input type="password" class="form-control" id="password" placeholder="your password" ng-model="landing.user.password" required />
                       <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                     </div>
 
-                    <p ng-if="land.loginFail">{{land.loginFailMessage}}</p>
+                    <p ng-if="landing.loginFail">{{landing.loginFailMessage}}</p>
                     <br />
-                    <button class="btn btn-primary btn-lg btn-block" ng-click="land.login()">Login</button>
+                    <button class="btn btn-primary btn-lg btn-block" ng-click="landing.login()">Login</button>
                 </form>
             </div>
             <div class="col-md-4"></div>
@@ -111,14 +111,14 @@
     </div>
 
     <!-- if a zip code hasn't been entered, or no response yet from server -->
-    <div class="row" ng-if="!land.zipCode.response && !land.loginStatus">
+    <div class="row" ng-if="!landing.zipCode.response && !landing.loginStatus">
       <div class="col-sm-12 col-md-12">
         <div class="panel bottom-panel">
             <div class="panel-heading">
               <h3>see if you qualify</h3>
             </div>
             <div class="panel-body">
-              <input ng-model="land.zipCode.input" ng-change="land.zipCodeKeyPress()" type="tel" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
+              <input ng-model="landing.zipCode.input" ng-change="landing.zipCodeKeyPress()" type="tel" placeholder="zip code" class="form-control input-lg zip-code" maxlength="5" autofocus />
             </div>
         </div>
       </div>
